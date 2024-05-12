@@ -1,0 +1,23 @@
+{
+  "name": "feature-sliced-design-gen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "bin": {
+    "fsd-folder-cli": "./index.js"
+  },
+  "author": "Navani Nayak",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "inquirer": "^9.2.20"
+  }
+}
