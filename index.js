@@ -2,9 +2,12 @@
 
 import { program } from "commander";
 import inquirer from "inquirer";
+import chalk from 'chalk';
 import { checkSliceFolderFileExists, isExistsAllSlices, createFullSlices , createIndiviualSlice} from './src/create-full.js'
 
 program.version("1.0.0").description("FSD Folder Template");
+
+const log  = console.log;
 
 program.action(async () => {
     const selectedChoice = await inquirer.prompt([
@@ -24,7 +27,6 @@ program.action(async () => {
         name: "folderName",
         message: "Please, enter folder name",
     }]).then((answers) => {
-        console.log("answers :::", answers);
         const { isValid, message } = isExistsAllSlices();
         if(isValid){
             if(selectedChoice.opts === 'full'){
@@ -46,7 +48,6 @@ program.action(async () => {
                     message: "Please, select slice name",
                 }]).then((result) => {
                     const { sliceName } =  result;
-                    console.log("slice Name :::", sliceName);
                     if(!checkSliceFolderFileExists(process.cwd()+'/test/'+sliceName).isValid){
                         //create folder the slice
                         createIndiviualSlice(answers, sliceName);
@@ -54,7 +55,9 @@ program.action(async () => {
                 })
             }
           
-            console.log("answers ::", answers)
+        }
+        else{
+            log(chalk.yellowBright(message))
         }
     })
 

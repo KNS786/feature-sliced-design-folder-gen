@@ -1,4 +1,8 @@
 import fs from 'node:fs';
+import chalk from 'chalk';
+
+
+const log = console.log;
 
 const slices = ['pages', 'widgets', 'features', 'entities'];
 const sliceMap = new Map([
@@ -45,7 +49,7 @@ export const isExistsAllSlices = () => {
         const error = new Error(err);
        return { 
           isValid: false,
-          message: error.message,
+          message: slices.length ? error.message : 'dir not found in feature sliced design pattern',
        }
     }
 
@@ -67,7 +71,6 @@ export const createFilesUnderSlice = (dir,sliceName, name) => {
     const selectedFolder = sliceMap.get(sliceName);
         for(let fileName of selectedFolder){
             if(!fs.existsSync(dir + '/' +fileName)){
-                console.log("fileName :::", dir + '/' +fileName);
                 fs.writeFile(dir + '/' + fileName, '',() => '');
             }
         }
@@ -97,11 +100,11 @@ export const createFullSlices = (name) => {
                 createFilesUnderSlice(dir+'/'+slices[s]+'/'+folderName,slices[s], folderName);
             }
         }
-        console.log("slices created Succssfully");
+        log(chalk.green("slices created Succssfully"));
     }
     catch(err){
         const error = new Error(err);
-        console.log(error.message);
+        log(chalk.red(error.message));
     }
 }
 
@@ -115,11 +118,11 @@ export const createIndiviualSlice = (name, sliceName) => {
         }else{
             throw new Error(`${folderName} folder name already exists on ${sliceName}`);
         }
-        console.log("file created successfully");
+        log(chalk.green("file created successfully!"));
 
     }catch(err){
         const error = new Error(err);
-        console.log(error.message);
+        log(chalk.red(error.message));
     }
       
 }
