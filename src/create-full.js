@@ -36,7 +36,7 @@ export const checkSliceFolderFileExists = (dir,folderName) => {
 }
 
 export const isExistsAllSlices = () => {
-    const dir  = process.cwd()+"/test";
+    const dir  = process.cwd();
     try{
         for(let s = 0; s< slices.length;s++){
             if(fs.existsSync(dir+"/"+slices[s])){
@@ -80,7 +80,7 @@ export const createFilesUnderSlice = (dir,sliceName, name) => {
 export const createFullSlices = (name) => {
     const { folderName  } = name;
     
-    const dir = process.cwd()+'/test';
+    const dir = process.cwd();
     try{
 
         //checks all slices same folder name is exists
@@ -110,7 +110,7 @@ export const createFullSlices = (name) => {
 
 export const createIndiviualSlice = (name, sliceName) => {
     const { folderName } = name;
-    const dir = process.cwd() +'/test';
+    const dir = process.cwd();
     try{
         if(!fs.existsSync(dir+'/'+sliceName +'/'+ folderName)){
             fs.mkdirSync(dir+'/'+sliceName + '/'+folderName);

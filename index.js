@@ -48,7 +48,7 @@ program.action(async () => {
                     message: "Please, select slice name",
                 }]).then((result) => {
                     const { sliceName } =  result;
-                    if(!checkSliceFolderFileExists(process.cwd()+'/test/'+sliceName).isValid){
+                    if(!checkSliceFolderFileExists(process.cwd()+'/'+sliceName).isValid){
                         //create folder the slice
                         createIndiviualSlice(answers, sliceName);
                     }
